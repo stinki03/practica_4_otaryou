@@ -5,10 +5,10 @@ A full-featured Event Registration application built with **Flutter**. This proj
 ## 🚀 Features
 
 - **Dynamic Registration Form**: Includes validation for name, email (regex), and mandatory selection fields.
-- **Internationalization (i18n)**: Support for English, Spanish, and French with an custom language selection flow.
+- **Internationalization (i18n)**: Support for English, Spanish, and French with a custom language selection flow.
 - **Modern UI/UX**: Built using Material 3 design principles with premium aesthetics.
 - **Responsive Design**: Adaptation for different screen sizes and orientations.
-- **Information flow**: Multi-step process with confirmation modals and a summary screen.
+- **Information Flow**: Multi-step process with confirmation modals and a summary screen.
 - **Profile Simulation**: Generates a user avatar based on registration data.
 
 ---
@@ -17,29 +17,29 @@ A full-featured Event Registration application built with **Flutter**. This proj
 
 Below are the key screens of the application with detailed descriptions of the implementation:
 
-### 1. Main Registration Interface (English)
-![Registration Form English](src/1pantalla.png)
-*Initial view of the app. It features a clean, card-based layout with custom icons for each input field. The globe icon in the top-right corner provides quick access to the language selector.*
+### 1. Main Interface (First Screen)
+![Main Interface](src/1pantalla.png)
+*Esta es la interfaz de la primera pantalla del proceso de registro. Presenta un diseño limpio basado en tarjetas con campos para nombre, correo, fecha y tipo de evento.*
 
-### 2. Form in Spanish & Validation State
-![Registration Form Spanish](src/2pantalla.png)
-*Demonstration of the system's internationalization. All labels, hints, and error messages are fully translated. This view shows a filled form ready for submission.*
-
-### 3. Custom Language Selector Dialog
+### 2. Language Selection Flow
 ![Language Selector](src/selectlang.png)
-*A custom-built modal dialog that allows the user to switch the app's locale globally. It uses a callback pattern to update the state of the entire application instantly.*
+*Panel utilizado para cambiar el idioma de la aplicación. Soporta múltiples locales y actualiza toda la interfaz de forma reactiva.*
 
-### 4. Confirmation Modal
+### 3. Registration Confirmation
 ![Confirmation Modal](src/dialogmodal.png)
-*Before finalizing the registration, the app presents a confirmation dialog. This prevents accidental submissions and ensures the user is ready to proceed to the summary.*
+*Diálogo modal que aparece para confirmar la registración antes de proceder al resumen final, asegurando que los datos sean correctos.*
 
-### 5. Final Registration Summary
-![Summary Screen](src/Screenshot%20from%202026-01-22%2012-48-15.png)
-*The final screen displays a simulated profile avatar (using the user's initial) and a clear, well-structured list of all the submitted registration details.*
+### 4. Summary Screen (Final Result)
+![Final Summary](src/final_summary.png)
+*Segunda pantalla que se muestra después de registrar. Presenta un resumen de toda la información ingresada junto con una simulación de imagen de perfil.*
 
-### 6. Responsive Design (Landscape)
-![Responsive Orientation](src/orientacion.png)
-*The application is fully responsive. Using `OrientationBuilder`, the layout adapts automatically to landscape mode, providing an optimized experience for desktop or rotated mobile devices.*
+### 5. Adaptive Orientation
+![Orientation Width](src/orientacion.png)
+*Demostración de la orientación en anchura. La aplicación ajusta automáticamente sus márgenes y disposición de componentes cuando el dispositivo se pone en modo horizontal.*
+
+### 6. Wide Responsive Layout
+![Responsive Screen](src/responsive.png)
+*Vista de la aplicación en una pantalla más larga/ancha, demostrando la capacidad del sistema para escalar y mantener una estética premium en diferentes resoluciones.*
 
 ---
 
@@ -47,7 +47,7 @@ Below are the key screens of the application with detailed descriptions of the i
 
 - **Language Switching**: Implemented using a callback mechanism from the UI to the main App state, ensuring reactive locale updates.
 - **Modeling**: Uses a `RegistrationData` class to handle form state and serialization.
-- **Localization**: Managed via `.arb` files and `flutter_gen` for type-safe string access.
+- **Localization**: Managed via `.arb` files and generated classes for type-safe string access.
 
 ## 📦 How to Install
 
