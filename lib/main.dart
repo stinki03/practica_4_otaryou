@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'l10n/app_localizations.dart';
 import 'screens/registration_screen.dart';
 
@@ -11,18 +11,15 @@ class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => MyAppState();
-
-  static MyAppState? of(BuildContext context) =>
-      context.findAncestorStateOfType<MyAppState>();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class MyAppState extends State<MyApp> {
-  Locale _locale = const Locale('en');
+class _MyAppState extends State<MyApp> {
+  Locale _currentLocale = const Locale('en');
 
-  void setLocale(Locale value) {
+  void _changeLanguage(Locale locale) {
     setState(() {
-      _locale = value;
+      _currentLocale = locale;
     });
   }
 
@@ -42,15 +39,10 @@ class MyAppState extends State<MyApp> {
           filled: true,
         ),
       ),
-      locale: _locale,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [Locale('en'), Locale('es'), Locale('fr')],
-      home: const RegistrationScreen(),
+      locale: _currentLocale,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: RegistrationScreen(onLocaleChange: _changeLanguage),
     );
   }
 }

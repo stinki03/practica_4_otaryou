@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../l10n/app_localizations.dart';
 import '../models/registration_data.dart';
-import '../main.dart';
+
 import 'summary_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({super.key});
+  final void Function(Locale) onLocaleChange;
+  const RegistrationScreen({super.key, required this.onLocaleChange});
 
   @override
   State<RegistrationScreen> createState() => _RegistrationScreenState();
@@ -48,11 +49,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final l10n = AppLocalizations.of(context)!;
     if (_formKey.currentState!.validate()) {
       if (!_data.termsAccepted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.missingFields),
-          ), // Re-using missingFields for simplicity or add specific key
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.missingFields)));
         return;
       }
       _formKey.currentState!.save();
@@ -88,6 +87,46 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
+  void _showLanguageDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text(
+          'Select Language',
+        ), // Ideally localized, but "Select Language" is generic enough or add to arb
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.flag),
+              title: const Text('English'),
+              onTap: () {
+                widget.onLocaleChange(const Locale('en'));
+                Navigator.pop(ctx);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.flag),
+              title: const Text('Español'),
+              onTap: () {
+                widget.onLocaleChange(const Locale('es'));
+                Navigator.pop(ctx);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.flag),
+              title: const Text('Français'),
+              onTap: () {
+                widget.onLocaleChange(const Locale('fr'));
+                Navigator.pop(ctx);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -96,21 +135,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       appBar: AppBar(
         title: Text(l10n.appTitle),
         actions: [
-          DropdownButton<Locale>(
-            value: Localizations.localeOf(context),
-            icon: const Icon(Icons.language, color: Colors.white),
-            dropdownColor: Theme.of(context).primaryColor,
-            underline: Container(),
-            onChanged: (Locale? newValue) {
-              if (newValue != null) {
-                MyApp.of(context)?.setLocale(newValue);
-              }
-            },
-            items: const [
-              DropdownMenuItem(value: Locale('en'), child: Text('EN')),
-              DropdownMenuItem(value: Locale('es'), child: Text('ES')),
-              DropdownMenuItem(value: Locale('fr'), child: Text('FR')),
-            ],
+          IconButton(
+            icon: const Icon(Icons.language),
+            tooltip: 'Change Language',
+            onPressed: () => _showLanguageDialog(context),
           ),
           const SizedBox(width: 16),
         ],
