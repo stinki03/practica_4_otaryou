@@ -18,24 +18,28 @@ A full-featured Event Registration application built with **Flutter**. This proj
 Below are the key screens of the application with detailed descriptions of the implementation:
 
 ### 1. Main Registration Interface (English)
-![Registration Form English](assets/registration_en.png)
+![Registration Form English](src/1pantalla.png)
 *Initial view of the app. It features a clean, card-based layout with custom icons for each input field. The globe icon in the top-right corner provides quick access to the language selector.*
 
 ### 2. Form in Spanish & Validation State
-![Registration Form Spanish](assets/registration_es.png)
+![Registration Form Spanish](src/2pantalla.png)
 *Demonstration of the system's internationalization. All labels, hints, and error messages are fully translated. This view shows a filled form ready for submission.*
 
 ### 3. Custom Language Selector Dialog
-![Language Selector](assets/language_selector.png)
+![Language Selector](src/selectlang.png)
 *A custom-built modal dialog that allows the user to switch the app's locale globally. It uses a callback pattern to update the state of the entire application instantly.*
 
 ### 4. Confirmation Modal
-![Confirmation Modal](assets/confirmation_modal.png)
-*Before finalize the registration, the app presents a confirmation dialog. This prevents accidental submissions and ensures the user is ready to proceed to the summary.*
+![Confirmation Modal](src/dialogmodal.png)
+*Before finalizing the registration, the app presents a confirmation dialog. This prevents accidental submissions and ensures the user is ready to proceed to the summary.*
 
 ### 5. Final Registration Summary
-![Summary Screen](assets/summary_screen.png)
+![Summary Screen](src/Screenshot%20from%202026-01-22%2012-48-15.png)
 *The final screen displays a simulated profile avatar (using the user's initial) and a clear, well-structured list of all the submitted registration details.*
+
+### 6. Responsive Design (Landscape)
+![Responsive Orientation](src/orientacion.png)
+*The application is fully responsive. Using `OrientationBuilder`, the layout adapts automatically to landscape mode, providing an optimized experience for desktop or rotated mobile devices.*
 
 ---
 
